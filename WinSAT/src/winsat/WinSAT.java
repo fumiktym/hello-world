@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 
 /*
  * コメント追加　その２ 追加
- * いたち
+ * いたち　変更要求１ change_request
  */
 public class WinSAT extends JFrame {
 	
