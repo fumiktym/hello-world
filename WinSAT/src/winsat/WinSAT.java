@@ -9,7 +9,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -20,7 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /*
- * コメント追加　その２
+ * コメント追加　その２ 追加
  */
 public class WinSAT extends JFrame {
 	
