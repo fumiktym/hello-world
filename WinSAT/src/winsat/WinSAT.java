@@ -21,12 +21,13 @@ import javax.swing.JPanel;
 /*
  * コメント追加　その２ 追加
  * いたち　変更要求１ change_request
+ * tori change request2
  */
 public class WinSAT extends JFrame {
-	
+
 	private final static String TITLE = "WinSAT";
 	private final static String satPath = "C:/Windows/Performance/WinSAT/DataStore";
-	
+
 	private JLabel text0;
 	private JLabel text1;
 	private JLabel text2;
@@ -34,36 +35,36 @@ public class WinSAT extends JFrame {
 	private JLabel text4;
 	private JLabel text5;
 	private JLabel text6;
-	
+
 	private String systemScore;
 	private String cpuScore;
 	private String memoryScore;
 	private String graphicsScore;
 	private String gamingScore;
 	private String diskScore;
-			
+
 	static public void main(String[] argv) {
 		WinSAT frame = new WinSAT();
 		frame.setBounds(100, 100, 350, 160);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.setVisible(true);
-	    
+
 	   frame.start();
 	}
 	public WinSAT() {
 		super(TITLE);
 	}
-	
+
 	private void start() {
 		Container pane = getContentPane();
 		makeWindow(pane);
-		
+
 		display();
-		
+
 	}
-	
+
 	private void makeWindow(Container p){
-		
+
 		JPanel l = new JPanel();
 		GridLayout layout = new GridLayout(0, 2);
 	    l.setLayout(layout);
@@ -73,49 +74,49 @@ public class WinSAT extends JFrame {
 	    text0.setSize(80, 16);
 	    l.add(label, BorderLayout.LINE_START);
 	    l.add(text0, BorderLayout.WEST);
-	    
+
 	    label = new JLabel("System");
 	    label.setSize(80, 16);
 	    text1 = new JLabel("");
 	    text1.setSize(40, 16);
 	    l.add(label, BorderLayout.LINE_START);
 	    l.add(text1, BorderLayout.WEST);
-	    
+
 	    label = new JLabel("CPU");
 	    label.setSize(80, 16);
 	    text2 = new JLabel("");
 	    text2.setSize(40, 16);
 	    l.add(label, BorderLayout.LINE_START);
 	    l.add(text2, BorderLayout.WEST);
-	    
+
 	    label = new JLabel("Memory");
 	    label.setSize(80, 16);
 	    text3 = new JLabel("");
 	    text3.setSize(40, 16);
 	    l.add(label, BorderLayout.LINE_START);
 	    l.add(text3, BorderLayout.WEST);
-	    
+
 	    label = new JLabel("Graphics");
 	    label.setSize(80, 16);
 	    text4 = new JLabel("");
 	    text4.setSize(40, 16);
 	    l.add(label, BorderLayout.LINE_START);
 	    l.add(text4, BorderLayout.WEST);
-	    
+
 	    label = new JLabel("Gaming");
 	    label.setSize(80, 16);
 	    text5 = new JLabel("");
 	    text5.setSize(40, 16);
 	    l.add(label, BorderLayout.LINE_START);
 	    l.add(text5, BorderLayout.WEST);
-	    
+
 	    label = new JLabel("Disk");
 	    label.setSize(80, 16);
 	    text6 = new JLabel("");
 	    text6.setSize(40, 16);
 	    l.add(label, BorderLayout.LINE_START);
 	    l.add(text6, BorderLayout.WEST);
-	    
+
 	    label = new JLabel("");
 	    label.setSize(80, 16);
 	    JButton recalcBtn = new JButton("�Čv�Z");
@@ -125,7 +126,7 @@ public class WinSAT extends JFrame {
 	    	          public void actionPerformed(ActionEvent event){
 	    	            JLabel msg = new JLabel("WinSAT formal �����s���܂��B");
 	    	            JOptionPane.showMessageDialog(frm, msg);
-	    	            
+
 	    	            try {
 							Runtime.getRuntime().exec("C:\\Windows\\SYSTEM32\\WinSAT2.EXE",new String[]{"formal", "-restart", "clean"});
 						} catch (IOException e) {
@@ -134,7 +135,7 @@ public class WinSAT extends JFrame {
 		    	            JOptionPane.showMessageDialog(frm, msg);
 		    	            return;
 						}
-	    	            
+
 	    	            msg = new JLabel("WinSAT formal �����s���I�����܂����B�B");
 	    	            JOptionPane.showMessageDialog(frm, msg);
 	    	            display();
@@ -144,11 +145,11 @@ public class WinSAT extends JFrame {
 	    recalcBtn.setSize(40, 16);
 	    l.add(label, BorderLayout.LINE_START);
 	    l.add(recalcBtn, BorderLayout.WEST);
-	    
+
 	    p.add(l, BorderLayout.CENTER);
-	    
+
 	}
-	
+
 	private void display() {
 		loadParams();
 		text1.setText(systemScore);
@@ -158,7 +159,7 @@ public class WinSAT extends JFrame {
 		text5.setText(gamingScore);
 		text6.setText(diskScore);
 	}
-	
+
 	private void loadParams() {
 		File file = searchSATXMLPath();
 		if(file == null) return;
@@ -167,7 +168,7 @@ public class WinSAT extends JFrame {
 		try {
 			rdr = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-16"));
 			String line;
-			
+
 			while((line = rdr.readLine())!=null){
 				int n = line.indexOf("<WinSPR>");
 				if(n > 0){
@@ -205,16 +206,16 @@ public class WinSAT extends JFrame {
 				}
 			}
 		}
-		
+
 		if(WinSPRStr.length() == 0) {
 			JLabel msg = new JLabel("WinSAT XML �t�@�C���Ɂ@<WinSPR>�^�O������܂���");
 	        JOptionPane.showMessageDialog(this, msg);
 	        return;
 		}
-		
+
 		parseWinSPR(WinSPRStr);
 	}
-	
+
 	private File searchSATXMLPath() {
 		File satDir = new File(satPath);
 		text0.setText("none");
@@ -248,7 +249,7 @@ public class WinSAT extends JFrame {
 		text0.setText(date);
 		return satXMLFile;
 	}
-	
+
 	private void parseWinSPR(String str) {
 		systemScore = getXMLValue("SystemScore", str);
 		cpuScore = getXMLValue("CpuScore", str);
@@ -257,7 +258,7 @@ public class WinSAT extends JFrame {
 		gamingScore = getXMLValue("GamingScore", str);
 		diskScore = getXMLValue("DiskScore", str);
 	}
-	
+
 	private String getXMLValue(String tag, String str) {
 		int n = str.indexOf("<"+tag+">");
 		if(n < 0) {
