@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /*
- * コメント追加
+ * コメント追加　その２
  */
 public class WinSAT extends JFrame {
 	
