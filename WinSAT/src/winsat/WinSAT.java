@@ -22,6 +22,7 @@ import javax.swing.JPanel;
  * コメント追加　その２ 追加
  * いたち　変更要求１ change_request
  * tori change request2
+ * 猫 change without request
  */
 public class WinSAT extends JFrame {
 
